@@ -1,3 +1,4 @@
+
 # EchoPwn
 #### This is a recon tool which allows you to discover the subdomains used by a target web application on both client and server side.Then runs Dirsearch on the resulted text file. It can also scans for open ports using NMAP and runs crawler on every live Host.
 
@@ -11,43 +12,30 @@
 ./EchoPwn.sh domain.com -arjun               //To run arjun on your results
 ./EchoPwn.sh domain.com -nmap -arjun         //For full scan
 ```
-# Requirements:
+# Installation:
+#### Only for MacOS and Linux
+```
+./install.sh
+```
+Some Tools require manual downloading of pre-built binaries (or build them yourself):
+1. [Subfinder](https://github.com/projectdiscovery/subfinder/releases/)
+2. [Assestfinder](https://github.com/tomnomnom/assetfinder/releases)
+3. [Aquatone](https://github.com/michenriksen/aquatone/releases/tag/v1.7.0)
 
-## Amass
+Download (or build) and place these binaries in the `EchoPwn` directory.
 
-### Installation
-#### Mac OS
-```
-brew tap caffix/amass
-brew install amass
-```
+Apart from the tokens required by individual tools, this script requires 4 tokens:
+- FaceBook Token
+- Github Token
+- Spyse Token
+- VirusTotal Token
 
-#### Linux
-```
-apt-get install amass
-```
+Place these tokens in `tokens.txt` before running `EchoPwn.sh`
 
-### Aquatone
-```
-gem install aquatone
-```
-### Findomain
-#### Mac OS
-```
-brew install findomain
-```
-#### Linux
-```
-apt-get install findomain
-```
-### Dnsgen
-```
-pip3 install dnsgen
-```
 # Coming Soon
-### Slack
-### GITROBE
-### AWS CLI
+* Slack
+* Gitrob
+* AWS cli
 
 
 # Thanks
