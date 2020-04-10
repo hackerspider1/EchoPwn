@@ -39,12 +39,12 @@ cat ~/aquatone/$1/hosts.txt | cut -f 1 -d ',' | sort -u >> EchoPwn/$1/fromaquadi
 rm -rf ~/aquatone/$1/
 
 echo "Starting github-subdomains..."
-python3 github-subdomains.py -t $9244beb6d0a0a7be467afa3e439d53282985d57a -d $1 | sort -u >> EchoPwn/$1/fromgithub.txt
+python3 github-subdomains.py -t $github_token_value -d $1 | sort -u >> EchoPwn/$1/fromgithub.txt
 
 echo "Starting findomain"
 #export findomain_fb_token="$findomain_fb_token"
-export findomain_spyse_token="91f1ee1f-c9c4-467b-b729-f295512b3319"
-export findomain_virustotal_token="a1bb7d2ed1a5680d3882e6f987601182deb76b7024528a5c2cccdcf7acba4cba"
+export findomain_spyse_token="findomain_spyse_token_value"
+export findomain_virustotal_token="findomain_virustotal_token_value"
 
 findomain -t $1 -r -u EchoPwn/$1/fromfindomain.txt
 
