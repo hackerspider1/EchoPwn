@@ -7,13 +7,15 @@ set -e
 if [ ! -d $PWD/EchoPwn ]; then
 	mkdir EchoPwn
 fi
-mkdir EchoPwn/$1/
+if [ ! -d $PWD/EchoPwn/$1 ]; then
+	mkdir EchoPwn/$1
+fi
 source tokens.txt
 
 echo "Starting our subdomain enumeration force..."
 
 echo "Starting Knock.py"
-python knock/knockpy/knockpy.py "$1" >> EchoPwn/$1/fromknock.txt
+#python knock/knockpy/knockpy.py "$1" >> EchoPwn/$1/fromknock.txt
 
 echo "Starting Sublist3r..."
 python3 Sublist3r/sublist3r.py -d "$1" -o EchoPwn/$1/fromsublister.txt
@@ -37,12 +39,12 @@ cat ~/aquatone/$1/hosts.txt | cut -f 1 -d ',' | sort -u >> EchoPwn/$1/fromaquadi
 rm -rf ~/aquatone/$1/
 
 echo "Starting github-subdomains..."
-python3 github-subdomains.py -t $github_token_value -d $1 | sort -u >> EchoPwn/$1/fromgithub.txt
+python3 github-subdomains.py -t $9244beb6d0a0a7be467afa3e439d53282985d57a -d $1 | sort -u >> EchoPwn/$1/fromgithub.txt
 
 echo "Starting findomain"
 #export findomain_fb_token="$findomain_fb_token"
-export findomain_spyse_token="findomain_spyse_token"
-export findomain_virustotal_token="findomain_virustotal_token"
+export findomain_spyse_token="91f1ee1f-c9c4-467b-b729-f295512b3319"
+export findomain_virustotal_token="a1bb7d2ed1a5680d3882e6f987601182deb76b7024528a5c2cccdcf7acba4cba"
 
 findomain -t $1 -r -u EchoPwn/$1/fromfindomain.txt
 
@@ -106,13 +108,19 @@ rm EchoPwn/$1/dnsgen-resolved.txt
 cat EchoPwn/$1/alltillnow.txt | sort -u >> EchoPwn/$1/$1.txt
 rm EchoPwn/$1/dnsgen-resolved-nowilds.txt
 rm EchoPwn/$1/alltillnow.txt
-#rm -rf EchoPwn/$1/
 
 echo "Appending http/s to hosts"
 for i in $(cat EchoPwn/$1/$1.txt); do echo "http://$i" && echo "https://$i"; done >> EchoPwn/$1/with-protocol-domains.txt
+cat Echopwn/$1/$1.txt | ~/go/bin/httprobe | tee -a Echopwn/$1/alive.txt
 
 echo "Taking screenshots..."
 cat EchoPwn/$1/with-protocol-domains.txt | ./aquatone -ports xlarge -out EchoPwn/$1/aquascreenshots
+
+if [[ "$*" = *"-arjun"* ]]
+then
+	cat Echopwn/$1/$1.txt | ~/go/bin/httprobe | tee -a Echopwn/$1/alive.txt
+	python3 Arjun/arjun.py --urls Echopwn/$1/alive.txt --get -o Echopwn/$1/arjun_out.txt -f Arjun/db/params.txt
+fi
 
 echo "Notifying you on slack"
 #curl -X POST -H 'Content-type: application/json' --data '{"text":"SubEnum finished scanning: '$1'"}' $slack_url
