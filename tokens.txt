@@ -1,3 +1,4 @@
-export findomain_fb_token="$findomain_fb_token"
-export findomain_spyse_token="indomain_spyse_token"
-export findomain_virustotal_token="findomain_virustotal_token"
+findomain_fb_token="VALUE"
+findomain_spyse_token="VALUE"
+findomain_virustotal_token="VALUE"
+github_subdomains_token="VALUE"

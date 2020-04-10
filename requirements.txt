@@ -1,0 +1,5 @@
+py-altdns
+dnsgen
+argparse
+dnspython
+requests

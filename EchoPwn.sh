@@ -1,5 +1,12 @@
 #!/bin/bash
+echo "
+ _____     _           ____
+| ____|___| |__   ___ |  _ \__      ___ __
+|  _| / __| '_ \ / _ \| |_) \ \ /\ / / '_ \
+| |__| (__| | | | (_) |  __/ \ V  V /| | | |
+|_____\___|_| |_|\___/|_|     \_/\_/ |_| |_|
 
+"
 echo "Starting SubEnum $1"
 
 echo "Creating directory"
@@ -39,12 +46,12 @@ cat ~/aquatone/$1/hosts.txt | cut -f 1 -d ',' | sort -u >> EchoPwn/$1/fromaquadi
 rm -rf ~/aquatone/$1/
 
 echo "Starting github-subdomains..."
-python3 github-subdomains.py -t $github_token_value -d $1 | sort -u >> EchoPwn/$1/fromgithub.txt
+python3 github-subdomains.py -t $github_subdomains_token -d $1 | sort -u >> EchoPwn/$1/fromgithub.txt
 
 echo "Starting findomain"
-#export findomain_fb_token="$findomain_fb_token"
-export findomain_spyse_token="findomain_spyse_token_value"
-export findomain_virustotal_token="findomain_virustotal_token_value"
+export findomain_fb_token="$findomain_fb_token"
+export findomain_spyse_token="$findomain_spyse_token"
+export findomain_virustotal_token="$findomain_virustotal_token"
 
 findomain -t $1 -r -u EchoPwn/$1/fromfindomain.txt
 
