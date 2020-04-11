@@ -20,6 +20,7 @@ Output will be saved in EchoPwn/domain.com/ directory
 1. go
 2. gem
 
+Then run:
 ```
 ./install.sh
 ```
