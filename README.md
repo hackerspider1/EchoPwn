@@ -1,6 +1,6 @@
 
 # EchoPwn
-#### This is a recon tool which allows you to discover the subdomains used by a target web application on both client and server side.Then runs Dirsearch on the resulted text file. It can also scans for open ports using NMAP and runs crawler on every live Host.
+#### This is a recon tool which allows you to discover the subdomains used by a target web application on both client and server side. Afterwards, it runs dirsearch on the resulted text file. It can also scan for open ports using NMAP and finds hidden parameters on every live Host.
 
 ![EchoPwn](https://github.com/hackerspider1/echopwn/blob/master/echopwn.png)
 
@@ -11,9 +11,15 @@
 ./EchoPwn.sh domain.com -nmap                //To run nmap on your results
 ./EchoPwn.sh domain.com -arjun               //To run arjun on your results
 ./EchoPwn.sh domain.com -nmap -arjun         //For full scan
+
+Output will be saved in EchoPwn/domain.com/ directory
 ```
 # Installation:
 #### Only for MacOS and Linux
+##### Prerequisites
+1. go
+2. gem
+
 ```
 ./install.sh
 ```
