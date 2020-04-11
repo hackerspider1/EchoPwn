@@ -33,9 +33,13 @@ Apart from the tokens required by individual tools, this script requires 4 token
 Place these tokens in `tokens.txt` before running `EchoPwn.sh`
 
 # Coming Soon
-* Slack
+* Slack notification integration
 * Gitrob
-* AWS cli
+* AWS S3 bucket finder
+& more...
+
+Suggestions are welcomed.
+Mail us at: **admin@echopwn.com**
 
 
 # Thanks
