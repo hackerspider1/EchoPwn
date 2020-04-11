@@ -30,9 +30,6 @@ then
 	cd Echopwn/$1/knock; python ../../../knock/knockpy/knockpy.py "$1" -j; cd ../../..
 fi
 
-echo "Starting Knock.py"
-#python knock/knockpy/knockpy.py "$1" >> EchoPwn/$1/fromknock.txt
-
 echo "Starting Sublist3r..."
 python3 Sublist3r/sublist3r.py -d "$1" -o EchoPwn/$1/fromsublister.txt
 
