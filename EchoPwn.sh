@@ -2,11 +2,12 @@
 echo "
  _____     _           ____
 | ____|___| |__   ___ |  _ \__      ___ __
-|  _| / __| '_ \ / _ \| |_) \ \ /\ / / '_ \
+|  _| / __| '_ \ / _ \| |_) \ \ /\ / / '_ \\
 | |__| (__| | | | (_) |  __/ \ V  V /| | | |
 |_____\___|_| |_|\___/|_|     \_/\_/ |_| |_|
 
 "
+
 echo "Starting SubEnum $1"
 
 echo "Creating directory"
@@ -20,6 +21,14 @@ fi
 source tokens.txt
 
 echo "Starting our subdomain enumeration force..."
+
+
+if [[ "$*" = *"-knock"* ]]
+then
+	echo "Starting KnockPy"
+	mkdir Echopwn/$1/knock
+	cd Echopwn/$1/knock; python ../../../knock/knockpy/knockpy.py "$1" -j; cd ../../..
+fi
 
 echo "Starting Knock.py"
 #python knock/knockpy/knockpy.py "$1" >> EchoPwn/$1/fromknock.txt
@@ -46,7 +55,7 @@ cat ~/aquatone/$1/hosts.txt | cut -f 1 -d ',' | sort -u >> EchoPwn/$1/fromaquadi
 rm -rf ~/aquatone/$1/
 
 echo "Starting github-subdomains..."
-python3 github-subdomains.py -t $github_subdomains_token -d $1 | sort -u >> EchoPwn/$1/fromgithub.txt
+python3 github-subdomains.py -t $github_token_value -d $1 | sort -u >> EchoPwn/$1/fromgithub.txt
 
 echo "Starting findomain"
 export findomain_fb_token="$findomain_fb_token"
@@ -129,8 +138,6 @@ then
 	python3 Arjun/arjun.py --urls Echopwn/$1/alive.txt --get -o Echopwn/$1/arjun_out.txt -f Arjun/db/params.txt
 fi
 
-echo "Notifying you on slack"
-#curl -X POST -H 'Content-type: application/json' --data '{"text":"SubEnum finished scanning: '$1'"}' $slack_url
 
 echo "Total hosts found: $(wc -l EchoPwn/$1/$1.txt)"
 
@@ -141,11 +148,18 @@ then
 	for i in $(cat Echopwn/$1/$1.txt); do nmap -sC -sV $i -o EchoPwn/$1/nmap/$i.txt; done
 fi
 
-echo "AWS S3 check"
-for i in $(cat Echopwn/$1/$1.txt); do aws s3 ls s3://$i >> EchoPwn/$1/aws.txt; done
+if [[ "$*" = *"-photon"* ]]
+then
+	echo "Starting Photon Crawler"
+	mkdir Echopwn/$1/photon
+	for i in $(cat Echopwn/$1/$1.txt); do python3 Photon/photon.py -u $i -o EchoPwn/$1/photon/$i -l 2 -t 50; done
+fi
 
 echo "DirSearch"
-cat EchoPwn/$1/$1.txt | xargs -P10 -I % sh -c "python3 dirsearch/dirsearch.py -e php,asp,aspx,jsp,html,zip,jar -w dirsearch/db/dicc.txt -t 80 -u %1$1"
 for i in $(cat Echopwn/$1/$1.txt); do python3 dirsearch/dirsearch.py -e php,asp,aspx,jsp,html,zip,jar -w dirsearch/db/dicc.txt -t 80 -u $i | tee Echopwn/$1/dirseach/$i.txt; done
+
+
+echo "Notifying you on slack"
+curl -X POST -H 'Content-type: application/json' --data '{"text":"EchoPwn finished scanning: '$1'"}' $slack_url
 
 echo "Finished successfully."
