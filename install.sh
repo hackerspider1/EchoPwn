@@ -34,6 +34,4 @@ else
 
 fi
 
-
-#aquatone , assetfinder, subfinder
-#go, gem
+go get -u github.com/tomnomnom/httprobe
