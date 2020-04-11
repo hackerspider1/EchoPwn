@@ -23,7 +23,8 @@ then
 else
   sudo apt-get update
   sudo apt-get install amass nmap
-
+  sudo snap install amass --classic #for ubuntu devices
+  sudo snap install go --classic #for supporting go 
   echo "Installing Findomain"
   wget https://github.com/Edu4rdSHL/findomain/releases/latest/download/findomain-linux
   chmod +x findomain-linux
