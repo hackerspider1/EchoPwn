@@ -18,6 +18,8 @@
 Output will be saved in EchoPwn/domain.com/ directory
 ```
 
+![EchoPwn.gif](https://github.com/hackerspider1/EchoPwn/blob/master/Echopwn.gif)
+
 # Workflow:
  `install.sh` makes environment to run `EchoPwn.sh`
   `EchoPwn.sh` creates a directory `EchoPwn/domain_name` in current working directory.
