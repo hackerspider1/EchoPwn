@@ -26,8 +26,8 @@ echo "Starting our subdomain enumeration force..."
 if [[ "$*" = *"-knock"* ]]
 then
 	echo "Starting KnockPy"
-	mkdir Echopwn/$1/knock
-	cd Echopwn/$1/knock; python ../../../knock/knockpy/knockpy.py "$1" -j; cd ../../..
+	mkdir EchoPwn/$1/knock
+	cd EchoPwn/$1/knock; python ../../../knock/knockpy/knockpy.py "$1" -j; cd ../../..
 fi
 
 echo "Starting Sublist3r..."
@@ -148,13 +148,13 @@ fi
 if [[ "$*" = *"-photon"* ]]
 then
 	echo "Starting Photon Crawler"
-	mkdir Echopwn/$1/photon
-	for i in $(cat Echopwn/$1/$1.txt); do python3 Photon/photon.py -u $i -o EchoPwn/$1/photon/$i -l 2 -t 50; done
+	mkdir EchoPwn/$1/photon
+	for i in $(cat EchoPwn/$1/$1.txt); do python3 Photon/photon.py -u $i -o EchoPwn/$1/photon/$i -l 2 -t 50; done
 fi
 
 echo "DirSearch"
-for i in $(cat Echopwn/$1/$1.txt); do python3 dirsearch/dirsearch.py -e php,asp,aspx,jsp,html,zip,jar -w dirsearch/db/dicc.txt -t 80 -u $i | tee Echopwn/$1/dirseach/$i.txt; done
-
+mkdir EchoPwn/$1/dirsearch
+for i in $(cat Echopwn/$1/$1.txt); do python3 dirsearch/dirsearch.py -e php,asp,aspx,jsp,html,zip,jar -w dirsearch/db/dicc.txt -t 80 -u $i --plain-text-report="Echopwn/$1/dirsearch/$i.txt"; done
 
 echo "Notifying you on slack"
 curl -X POST -H 'Content-type: application/json' --data '{"text":"EchoPwn finished scanning: '$1'"}' $slack_url
