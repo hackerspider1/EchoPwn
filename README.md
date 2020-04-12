@@ -8,10 +8,12 @@
 # Usage
 
 ```
-./EchoPwn.sh domain.com                      //For Default Scan
-./EchoPwn.sh domain.com -nmap                //To run nmap on your results
-./EchoPwn.sh domain.com -arjun               //To run arjun on your results
-./EchoPwn.sh domain.com -nmap -arjun         //For full scan
+./EchoPwn.sh domain.com                 	      //For Default Scan
+./EchoPwn.sh domain.com -nmap            	      //To run nmap on your results
+./EchoPwn.sh domain.com -arjun   		      //To run arjun on your results
+./EchoPwn.sh domain.com -photon          	      //To run photon on each subdomain
+./EchoPwn.sh domain.com -knock                	      //To bruteforce subdomain using knockpy
+./EchoPwn.sh domain.com -nmap -arjun -photon -kncok   //For Full Scan
 
 Output will be saved in EchoPwn/domain.com/ directory
 ```
@@ -79,6 +81,15 @@ Apart from the tokens required by individual tools, this script requires 4 addit
 - Slack WebHook URL
 
 Place these values in `tokens.txt` before running `EchoPwn.sh`
+
+
+**NOTE**
+1. If you face Import error (Queue) while running altdns, you have to manually change __main__.py file mentioned in the error. Do the following change
+Before: `Import Queue from Queue as Queue`
+After: `Import queue from Queue as Queue`
+
+2. To set GOPATH, use the following command:
+`export $GOPATH=~/go/bin`
 
 # Coming Soon
 * Gitrob
