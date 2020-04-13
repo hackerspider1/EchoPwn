@@ -33,9 +33,6 @@ fi
 echo "Starting Sublist3r..."
 python3 Sublist3r/sublist3r.py -d "$1" -o EchoPwn/$1/fromsublister.txt
 
-echo "Starting our crtsh script..."
-python3 crt.py -q "%25.$1" >> EchoPwn/$1/fromcrt.txt
-
 echo "Amass turn..."
 amass enum --passive -d $1 -o EchoPwn/$1/fromamass.txt
 
@@ -124,15 +121,15 @@ rm EchoPwn/$1/alltillnow.txt
 
 echo "Appending http/s to hosts"
 for i in $(cat EchoPwn/$1/$1.txt); do echo "http://$i" && echo "https://$i"; done >> EchoPwn/$1/with-protocol-domains.txt
-cat Echopwn/$1/$1.txt | ~/go/bin/httprobe | tee -a Echopwn/$1/alive.txt
+cat EchoPwn/$1/$1.txt | ~/go/bin/httprobe | tee -a EchoPwn/$1/alive.txt
 
 echo "Taking screenshots..."
 cat EchoPwn/$1/with-protocol-domains.txt | ./aquatone -ports xlarge -out EchoPwn/$1/aquascreenshots
 
 if [[ "$*" = *"-arjun"* ]]
 then
-	cat Echopwn/$1/$1.txt | ~/go/bin/httprobe | tee -a Echopwn/$1/alive.txt
-	python3 Arjun/arjun.py --urls Echopwn/$1/alive.txt --get -o Echopwn/$1/arjun_out.txt -f Arjun/db/params.txt
+	cat EchoPwn/$1/$1.txt | ~/go/bin/httprobe | tee -a EchoPwn/$1/alive.txt
+	python3 Arjun/arjun.py --urls EchoPwn/$1/alive.txt --get -o EchoPwn/$1/arjun_out.txt -f Arjun/db/params.txt
 fi
 
 
@@ -141,8 +138,8 @@ echo "Total hosts found: $(wc -l EchoPwn/$1/$1.txt)"
 if [[ "$*" = *"-nmap"* ]]
 then
 	echo "Starting Nmap"
-	mkdir Echopwn/$1/nmap
-	for i in $(cat Echopwn/$1/$1.txt); do nmap -sC -sV $i -o EchoPwn/$1/nmap/$i.txt; done
+	mkdir EchoPwn/$1/nmap
+	for i in $(cat EchoPwn/$1/$1.txt); do nmap -sC -sV $i -o EchoPwn/$1/nmap/$i.txt; done
 fi
 
 if [[ "$*" = *"-photon"* ]]
