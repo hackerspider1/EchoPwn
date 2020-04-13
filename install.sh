@@ -34,4 +34,8 @@ else
 
 fi
 
-go get -u github.com/tomnomnom/httprobe
+go get github.com/tomnomnom/httprobe
+go get github.com/subfinder/subfinder 
+cp /$HOME/go/bin/subfinder .
+go get github.com/tomnomnom/assetfinder
+cp /$HOME/go/bin/assetfinder .
