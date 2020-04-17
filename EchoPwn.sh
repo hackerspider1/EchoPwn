@@ -151,7 +151,7 @@ fi
 
 echo "DirSearch"
 mkdir EchoPwn/$1/dirsearch
-for i in $(cat Echopwn/$1/$1.txt); do python3 dirsearch/dirsearch.py -e php,asp,aspx,jsp,html,zip,jar -w dirsearch/db/dicc.txt -t 80 -u $i --plain-text-report="Echopwn/$1/dirsearch/$i.txt"; done
+for i in $(cat EchoPwn/$1/$1.txt); do python3 dirsearch/dirsearch.py -e php,asp,aspx,jsp,html,zip,jar -w dirsearch/db/dicc.txt -t 80 -u $i --plain-text-report="EchoPwn/$1/dirsearch/$i.txt"; done
 
 echo "Notifying you on slack"
 curl -X POST -H 'Content-type: application/json' --data '{"text":"EchoPwn finished scanning: '$1'"}' $slack_url
