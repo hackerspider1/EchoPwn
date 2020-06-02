@@ -1,0 +1,7 @@
+py-altdns
+dnsgen
+argparse
+dnspython
+requests
+colorama==0.3.7
+colored

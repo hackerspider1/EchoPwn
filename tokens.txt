@@ -1,0 +1,5 @@
+findomain_fb_token="VALUE"
+findomain_spyse_token="Value"
+findomain_virustotal_token="Value"
+github_token_value="Value"
+slack_url="VALUE"
