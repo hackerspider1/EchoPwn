@@ -4,6 +4,7 @@
 #### This is a recon tool which allows you to discover the subdomains used by a target web application on both client and server side. Afterwards, it runs dirsearch on the resulted text file. It can also scan for open ports using NMAP and finds hidden parameters on every live Host.
 
 ![EchoPwn](https://github.com/hackerspider1/echopwn/blob/master/Readme/echopwn.png)
+## For installation steps Please refer to this [link](https://echopwn.com/road-to-recon-with-echopwn-sh/).
 
 # Usage
 
@@ -59,7 +60,10 @@ Output will be saved in EchoPwn/domain.com/ directory
   - -b [Custom Bruteforcer] &emsp;&emsp; Runs custom bruteforcer to find subdomains
 	- -k [KnockPy] &emsp;&emsp;&emsp; Bruteforce subdomains [takes time and saves output in current working directory (in json format)]
 
-6. **Slack Notification**
+6. **Checking for subdomain takeover**
+	- Subdomain-takeover
+
+7. **Slack Notification**
 	- WebHook URL placed in `tokens.txt` will be used to notify the user once the script has finished running.
 
 ![Slack](https://github.com/hackerspider1/EchoPwn/blob/master/Readme/slack_url.png)
@@ -108,4 +112,4 @@ Mail us at: **admin@echopwn.com**
 
 # Thanks
 #### This script uses tools which are developed by the following people
-[OWASP](https://github.com/OWASP/), [ProjectDiscovery](https://github.com/projectdiscovery/), [Tom Hudson](https://github.com/tomnomnom/), [Michael Henriksen](https://github.com/michenriksen/), [Gwendal Le Coguic](https://github.com/gwen001/), [Eduard Tolosa](https://github.com/Edu4rdSHL/), [B. Blechschmidt](https://github.com/blechschmidt/), [ProjectAnte](https://github.com/ProjectAnte/), [Somdev Sangwan](https://github.com/s0md3v/), [Mauro Soria](https://github.com/maurosoria/), [Gianni Amato](https://gitub.com/guelfoweb/), [Ahmed Aboul-Ela](https://github.com/aboul3la/)
+[OWASP](https://github.com/OWASP/), [ProjectDiscovery](https://github.com/projectdiscovery/), [Tom Hudson](https://github.com/tomnomnom/), [Michael Henriksen](https://github.com/michenriksen/), [Gwendal Le Coguic](https://github.com/gwen001/), [Eduard Tolosa](https://github.com/Edu4rdSHL/), [B. Blechschmidt](https://github.com/blechschmidt/), [ProjectAnte](https://github.com/ProjectAnte/), [Somdev Sangwan](https://github.com/s0md3v/), [Mauro Soria](https://github.com/maurosoria/), [Gianni Amato](https://gitub.com/guelfoweb/), [Ahmed Aboul-Ela](https://github.com/aboul3la/), [0x94](https://github.com/antichown/subdomain-takeover)
